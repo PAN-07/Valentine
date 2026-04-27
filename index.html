@@ -18,6 +18,21 @@ body {
   color: white;
 }
 
+/* MUTE BUTTON */
+#muteToggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+  background: #222;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
 .card {
   width: 360px;
   background: #111;
@@ -152,6 +167,8 @@ button {
 
 <body>
 
+<button id="muteToggle">🔊 Sound On</button>
+
 <audio id="music" autoplay loop>
   <source src="shaggy-angel.mp3">
 </audio>
@@ -192,6 +209,7 @@ const yesBtn = document.getElementById("yes");
 const dm = document.getElementById("dm");
 const dmText = document.getElementById("dmText");
 const music = document.getElementById("music");
+const muteToggle = document.getElementById("muteToggle");
 
 let scale = 1;
 let yesScale = 1;
@@ -210,6 +228,12 @@ let noCount = 0;
 document.body.addEventListener("click", () => {
   music.play();
 },{once:true});
+
+/* MUTE / UNMUTE */
+muteToggle.addEventListener("click", () => {
+  music.muted = !music.muted;
+  muteToggle.innerText = music.muted ? "🔇 Muted" : "🔊 Sound On";
+});
 
 let firstEscape = true;
 
